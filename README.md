@@ -10,13 +10,6 @@ Actually it's non-convex.
 pip install -r requirements.txt
 ```
 
-You also need to install `dccp` manually, go to some folder you like then
-```
-git clone git@github.com:cvxgrp/dccp.git
-cd dccp
-python setup.py install
-```
-
 ### Mathematical foundation
 
 Please render the following Latex by human compiler.
