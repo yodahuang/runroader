@@ -1,9 +1,10 @@
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-import click
-from pathlib import Path
-from collections import namedtuple
 import pickle
+from collections import namedtuple
+from pathlib import Path
+
+import click
+import matplotlib.patches as patches
+import matplotlib.pyplot as plt
 
 from constants import S_0, S_F, T_MAX
 

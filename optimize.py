@@ -1,11 +1,13 @@
-import cvxpy as cvx
-from cvxpy import sqrt, sum, inv_pos
-import click
-from constants import W_T, W_J, V_0, A_0, V_MAX, A_MAX, S_0, S_F
-from create_environment import load_environment, Rectangle
 import math
+
+import click
+import cvxpy as cvx
 import dccp
 import numpy as np
+from cvxpy import inv_pos, sqrt, sum
+
+from constants import A_0, A_MAX, S_0, S_F, V_0, V_MAX, W_J, W_T
+from utils.create_environment import Rectangle, load_environment
 
 
 class FancyModel():
