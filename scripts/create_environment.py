@@ -1,30 +1,11 @@
 import pickle
-from collections import namedtuple
-from pathlib import Path
 
 import click
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 
-from constants import S_0, S_F, T_MAX
-
-Rectangle = namedtuple('Rectangle', ['bottom_left_corner', 'width', 'height'])
-
-DEFAULT_FILE_NAME = 'random'
-TEMP_DIRECTORY = Path('tmp_env')
-PERMINANT_DIRECTORY = Path('saved_envs')
-
-
-def load_environment(name=None):
-    if name is None:
-        name = DEFAULT_FILE_NAME
-        directory = TEMP_DIRECTORY
-    else:
-        directory = PERMINANT_DIRECTORY
-    environment_path = directory / (name + '.pickle')
-    with open(environment_path, 'rb') as f:
-        return pickle.load(f)
-
+from runroader.constants import S_0, S_F, T_MAX
+from runroader.utils.environment import Rectangle, DEFAULT_FILE_NAME, TEMP_DIRECTORY, PERMINANT_DIRECTORY
 
 class EnvironmentBuilder:
     def __init__(self, directory, name):

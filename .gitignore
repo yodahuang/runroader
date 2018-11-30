@@ -2,3 +2,4 @@ tmp_env/
 __pycache__/
 .vscode/
 dccp.log
+runroader.egg-info

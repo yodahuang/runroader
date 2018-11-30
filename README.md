@@ -7,8 +7,10 @@ Actually it's non-convex.
 ### Setup and run
 
 ```shell
-pip install -r requirements.txt
+pip install -e .
 ```
+
+For running the project, two command line entries are provided: `create-runroader-env` and `optimize-runroader`. Use `--help` for details.
 
 ### Mathematical foundation
 

@@ -6,8 +6,8 @@ import dccp
 import numpy as np
 from cvxpy import inv_pos, sqrt, sum
 
-from constants import A_0, A_MAX, S_0, S_F, V_0, V_MAX, W_J, W_T
-from utils.create_environment import Rectangle, load_environment
+from .constants import A_0, A_MAX, S_0, S_F, V_0, V_MAX, W_J, W_T
+from .utils.environment import Rectangle, load_environment
 
 
 class FancyModel():
@@ -56,7 +56,6 @@ def optimize(name):
     # Just for testing
     model = FancyModel(environment[0])
     model.optimize()
-
 
 if __name__ == "__main__":
     optimize()
