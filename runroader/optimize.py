@@ -3,6 +3,7 @@ import math
 import click
 import cvxpy as cvx
 import dccp
+import matplotlib.pyplot as plt
 import numpy as np
 from cvxpy import inv_pos, sqrt, sum
 
@@ -15,6 +16,8 @@ class FancyModel():
         self.w_t, self.w_j = (cvx.Parameter(nonneg=True) for _ in range(2))
         self.w_t.value = W_T
         self.w_j.value = W_J
+
+        self.resolution = resolution
 
         self.alpha = cvx.Variable(resolution + 1)
         self.beta = cvx.Variable(resolution + 1)
@@ -42,11 +45,12 @@ class FancyModel():
         obj = cvx.Minimize(self.w_t * self.J_t + self.w_j * self.J_s)
         constraints = self.dynamic_model + [self.obstacle_constraint] + self.friction_circle_constraints + self.initial_condition
         prob = cvx.Problem(obj, constraints)
-        print("problem is DCCP:", dccp.is_dccp(prob))  # true
         result = prob.solve(method='dccp')
         print("cost value =", result[0])
         # print("optimal var", self.alpha.value, self.beta.value)
-        t_space = self.to_t_space()
+        return (self.to_t_space(), range(self.resolution))
+
+
 
 
 @click.command()
@@ -54,8 +58,13 @@ class FancyModel():
 def optimize(name):
     environment = Environment.from_pickle(name)
     # Just for testing
+    plt.figure()
+    ax = plt.subplot(111)
+    environment.render(ax)
     model = FancyModel(environment.rectangles[0])
-    model.optimize()
+    t_arr, s_arr = model.optimize()
+    plt.plot(s_arr, t_arr)
+    plt.show()
 
 
 if __name__ == "__main__":

@@ -6,4 +6,4 @@ V_MAX = 5
 A_MAX = 3
 S_0 = 0
 S_F = 200
-T_MAX = 30
+T_MAX = 100
