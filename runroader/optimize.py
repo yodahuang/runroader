@@ -7,7 +7,7 @@ import numpy as np
 from cvxpy import inv_pos, sqrt, sum
 
 from .constants import A_0, A_MAX, S_0, S_F, V_0, V_MAX, W_J, W_T
-from .utils.environment import Rectangle, load_environment
+from .environment import Environment
 
 
 class FancyModel():
@@ -52,10 +52,11 @@ class FancyModel():
 @click.command()
 @click.option('--name', help='The name of the environment, nor providing means use temp environment')
 def optimize(name):
-    environment = load_environment(name)
+    environment = Environment.from_pickle(name)
     # Just for testing
-    model = FancyModel(environment[0])
+    model = FancyModel(environment.rectangles[0])
     model.optimize()
+
 
 if __name__ == "__main__":
     optimize()

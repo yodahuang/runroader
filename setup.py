@@ -9,7 +9,8 @@ setup(name='runroader',
       entry_points={
           'console_scripts': [
               'create-runroader-env=scripts.create_environment:main',
-              'optimize-runroader=runroader.optimize:optimize'
+              'optimize-runroader=runroader.optimize:optimize',
+              'visualize-runroader-env=runroader.environment:visualize_pickle'
           ]
       },
       install_requires=[

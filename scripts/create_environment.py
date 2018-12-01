@@ -5,12 +5,12 @@ import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 
 from runroader.constants import S_0, S_F, T_MAX
-from runroader.utils.environment import Rectangle, DEFAULT_FILE_NAME, TEMP_DIRECTORY, PERMINANT_DIRECTORY
+from runroader.environment import Rectangle, Environment
+
 
 class EnvironmentBuilder:
-    def __init__(self, directory, name):
-        self.directory = directory
-        self.name = name if name is not None else DEFAULT_FILE_NAME
+    def __init__(self, name):
+        self.name = name
         self.fig = plt.figure()
         self.ax = self.fig.add_subplot(111)
         self.ax.set_title('drag to build rectangles')
@@ -36,10 +36,9 @@ class EnvironmentBuilder:
 
     def on_key(self, event):
         if event.key == 'enter':
-            save_path = self.directory / (self.name + '.pickle')
-            with open(save_path, 'wb') as f:
-                pickle.dump(self.rectangles, f)
-            print('Saved the model to {}'.format(save_path))
+            environment = Environment(self.rectangles)
+            environment.to_pickle(self.name)
+            plt.close()
 
 
 @click.command()
@@ -51,14 +50,7 @@ def main(name):
 
     Press `enter` for the end of the process
     """
-    if name is not None:
-        directory = PERMINANT_DIRECTORY
-    else:
-        directory = TEMP_DIRECTORY
-    if not directory.exists():
-        directory.mkdir()
-
-    builder = EnvironmentBuilder(directory, name)
+    builder = EnvironmentBuilder(name)
     plt.show()
 
 
