@@ -10,7 +10,7 @@ Actually it's non-convex.
 pip install -e .
 ```
 
-For running the project, two command line entries are provided: `create-runroader-env` and `optimize-runroader`. Use `--help` for details.
+For running the project, two command line entries are provided: `create-runroader-env`, `optimize-runroader` and `visualize-runroader-env`. Use `--help` for details.
 
 ### Mathematical foundation
 
