@@ -18,7 +18,7 @@ kTol = 0.01
 
 learningRate = 0.1
 
-show_animation = False
+show_animation = True
 plot_trajectories = False
 
 speedDiscretization = 3.0
@@ -116,7 +116,7 @@ def GetJacobian(target, params, deltaParams, state):
 
 def show_trajectory(target, xc, yc):
 
-    plt.clf()
+    # plt.clf()
     plot_arrow(target.x, target.y, target.yaw)
     plt.plot(xc, yc, "-r")
     plt.axis("equal")
@@ -220,11 +220,11 @@ def test_optimize_speed_profile(initialSpeed=10., initial_aceleration=0., final_
             x = [traj[i].x for i in range(len(traj))]
             y = [traj[i].y for i in range(len(traj))]
             yaw = [traj[i].yaw for i in range(len(traj))]
-            k = [traj[i].k for i in range(len(traj))]
+            curvatures = [traj[i].k for i in range(len(traj))]
 
             pathValid = True
-            for j in range(len(k)):
-                if math.fabs(k[j])>max_acc or yaw[j]<(1./maxSpeed) or yaw[j]<0.:
+            for j in range(len(curvatures)):
+                if math.fabs(curvatures[j])>max_acc or yaw[j]<(1./maxSpeed) or yaw[j]<0.:
                     pathValid=False
                     break
 
@@ -247,10 +247,11 @@ def test_optimize_speed_profile(initialSpeed=10., initial_aceleration=0., final_
 def main():
     print(__file__ + " start!!")
 
-
-
-
+    plt.xlabel('distance (m)')
+    plt.ylabel('time (s)')
     test_optimize_speed_profile()
+
+    plt.show()
 
 
 
