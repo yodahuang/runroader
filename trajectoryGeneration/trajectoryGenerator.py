@@ -18,7 +18,7 @@ kTol = 0.01
 
 learningRate = 0.1
 
-show_animation = True
+show_animation = False
 plot_trajectories = False
 
 speedDiscretization = 3.0

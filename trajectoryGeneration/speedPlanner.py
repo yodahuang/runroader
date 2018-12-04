@@ -1047,7 +1047,7 @@ if __name__ == "__main__":
 
             target = trajectoryGenerator.motion_model.State(val[0], val[1], traj[-1], 0.0, 0.)
             plt.plot(x, y, "-r")
-            plt.axis("equal")
+            # plt.axis("equal")
             plt.grid(True)
             # trajectoryGenerator.show_trajectory(target, x, y)
 
@@ -1065,4 +1065,6 @@ if __name__ == "__main__":
     ax.add_collection(p)
     plt.xlabel('distance (m)')
     plt.ylabel('time (s)')
+    plt.xlim(0, 50)
+    plt.ylim(0, 8)
     plt.show()
